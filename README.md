@@ -51,10 +51,9 @@ na razmišljanje "kako li je samo naèinjena". Smatram da je aplikacija prilièno u
 i da bi se mogla koristiti kao dobra zabava, ali i provjera znanja (naravno kada bi admin
 redovito objavljivao kvizove).
 
-Podaci za admina:		Podaci za korisnika:
-email: tk@fer.hr		email:proba@fer.hr	TinK@fer.hr
-lozinka: Tiny-555		lozinka:Proba-123	Abc.123
-
-
-
-
+Podaci za admina:		
+email: tk@fer.hr	lozinka: Tiny-555
+			
+Podaci za korisnika:
+email: proba@fer.hr	lozinka: Proba-123
+email: TinK@fer.hr	lozinka: Abc.123
