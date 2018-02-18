@@ -1,0 +1,92 @@
+﻿@model OnlineQuiz.Models.QuizViewModels.RankingsModel
+
+@{
+    ViewData["Title"] = "Rankings";
+}
+<head>
+    <style>
+        table thead {
+            background-color: #eee;
+            color: #666666;
+            font-weight: bold;
+            cursor: default;
+        }
+
+        table tbody {
+            counter-reset: sortabletablescope;
+        }
+
+        table thead tr::before {
+            content: "";
+            display: table-cell;
+        }
+
+        table tbody tr::before {
+            content: counter(sortabletablescope);
+            counter-increment: sortabletablescope;
+            display: table-cell;
+        }
+    </style>
+</head>
+<h1 style="font-weight: bold">RANKINGS</h1>
+
+<table class="table sortable">
+    <thead>
+        <tr>
+            <th style="cursor: pointer">
+                NickName
+            </th>
+            <th style="cursor: pointer">
+                Quizzes solved
+            </th>
+            <th style="cursor: pointer">
+                Total points
+            </th>
+            <th style="cursor: pointer">
+                Total percentage
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Users.Count(); i++)
+        {
+            @if (Model.UserId.Equals(Model.Users.ElementAt(i).Id))
+            {
+        <tr style="background-color: lightgrey">
+            <td>
+                @Model.Users.ElementAt(i).NickName
+            </td>
+            <td>
+                @Model.Users.ElementAt(i).NumOfSolvedQuizes
+            </td>
+            <td>
+                @Model.Users.ElementAt(i).TotalPoints
+            </td>
+            <td>
+                @Model.Users.ElementAt(i).TotalPercentage%
+            </td>
+        </tr>
+            }
+            else
+            {
+        <tr>
+            <td>
+                @Model.Users.ElementAt(i).NickName
+            </td>
+            <td>
+                @Model.Users.ElementAt(i).NumOfSolvedQuizes
+            </td>
+            <td>
+                @Model.Users.ElementAt(i).TotalPoints
+            </td>
+            <td>
+                @Model.Users.ElementAt(i).TotalPercentage%
+            </td>
+        </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<script src="~/js/Sorttable.js"></script>

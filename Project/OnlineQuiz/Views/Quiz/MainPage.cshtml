@@ -1,0 +1,75 @@
+﻿@model OnlineQuiz.Models.QuizViewModels.MainPageModel
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "MainPage";
+}
+<head>
+    <style>
+        table thead {
+            background-color: #eee;
+            color: #666666;
+            font-weight: bold;
+            cursor: default;
+        }
+    </style>
+</head>
+<h2 style="font-weight: bold">Main Page</h2>
+
+@if (User.IsInRole("Admin"))
+{
+    <p><a asp-action="CreateQuiz">Create a new quiz</a></p>
+    @if (Model.AreRemovable)
+    {
+        <p>There are some outdated quizzes!  <a asp-action="RemoveOutdated">Remove</a></p>
+    }
+}
+<table class="table sortable">
+    <thead>
+        <tr>
+            <th style="cursor: pointer">
+                Quiz name
+            </th>
+            <th style="cursor: pointer">
+                Date created
+            </th>
+            <th style="cursor: pointer">
+                Date expiring
+            </th>
+            <th style="cursor: pointer">
+                Genre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Quizes)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuizName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateExpiring)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuizGenre)
+            </td>
+            @if (User.IsInRole("Admin")) { 
+                <td>
+                    @Html.ActionLink("More", "QuizDetails", new { quizId = item.Id })
+                </td>
+            }
+            else { 
+                <td>
+                    @Html.ActionLink("Solve", "SolveQuiz", new { quizId = item.Id })
+                </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/js/Sorttable.js"></script>

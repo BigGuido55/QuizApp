@@ -1,0 +1,66 @@
+﻿@model OnlineQuiz.Models.QuizViewModels.QuestionModel
+
+@{
+    ViewData["Title"] = "AddQuestions";
+}
+
+<h2 style="font-weight: bold">Add questions</h2>
+
+<h4>Question Number @Model.Number</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddQuestions">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="QuestionText" class="control-label"></label>
+                <input asp-for="QuestionText" class="form-control" value=""/>
+                <span asp-validation-for="QuestionText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Correct" class="control-label"></label>
+                <input asp-for="Correct" class="form-control" value=""/>
+                <span asp-validation-for="Correct" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wrong1" class="control-label"></label>
+                <input asp-for="Wrong1" class="form-control" value=""/>
+                <span asp-validation-for="Wrong1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wrong2" class="control-label"></label>
+                <input asp-for="Wrong2" class="form-control" value=""/>
+                <span asp-validation-for="Wrong2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wrong3" class="control-label"></label>
+                <input asp-for="Wrong3" class="form-control" value=""/>
+                <span asp-validation-for="Wrong3" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Number" class="control-label"></label>
+                <input asp-for="Number" class="form-control" value=@Model.Number />
+                <span asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="QuizId" class="control-label"></label>
+                <input asp-for="QuizId" class="form-control" value="@Model.QuizId" />
+                <span asp-validation-for="QuizId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Last question?</label>
+                <input asp-for="IsFinished" class="form-control" />
+                <span asp-validation-for="IsFinished" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Reset" asp-route-quizId=@Model.QuizId>Cancel</a>    
+</div>
+
+

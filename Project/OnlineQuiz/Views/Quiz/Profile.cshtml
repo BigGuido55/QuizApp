@@ -1,0 +1,110 @@
+﻿@model OnlineQuiz.Models.QuizViewModels.ProfileModel
+
+@{
+    ViewData["Title"] = "Profile";
+}
+<head>
+    <style>
+        table thead {
+            background-color: #eee;
+            color: #666666;
+            font-weight: bold;
+            cursor: default;
+        }
+    </style>
+</head>
+<h2 style="font-weight: bold">Profile</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">        
+        <dt>
+            <img src="@Url.Action("UserPhoto", "Quiz", new { UserId = Model.UserID })" height="150" width="150" />
+        </dt>        
+        <dd></dd>
+        <dt>
+            <a asp-action="EditPhoto" asp-route-userID=@Model.UserID>Change photo</a>
+        </dt>
+        <dd></dd>
+        <dt>
+            Nickname
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserName) <a asp-action="EditName" asp-route-userId=@Model.UserID>Change Nickname</a>
+        </dd>
+        <dt>
+            Solved quizzes
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumOfQuiz)
+        </dd>
+        <dt>
+            Total points
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+        <dt>
+            Percentage correct
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalPercentage)%
+        </dd>
+    </dl>
+</div>
+
+<table class="table sortable">
+    <thead>
+        <tr>
+            <th style="cursor: pointer">
+                @Html.DisplayNameFor(model => model.Quizes.First().QuizName)
+            </th>
+            <th style="cursor: pointer">
+                @Html.DisplayNameFor(model => model.Quizes.First().NumberOfQuestions)
+            </th>
+            <th style="cursor: pointer">
+                @Html.DisplayNameFor(model => model.Quizes.First().CorrectQuestions)
+            </th>
+            <th style="cursor: pointer">
+                @Html.DisplayNameFor(model => model.Quizes.First().PercentageCorrect)
+            </th>
+            <th style="cursor: pointer">
+                @Html.DisplayNameFor(model => model.Quizes.First().DateSolved)
+            </th>
+            <th style="cursor: pointer">
+                @Html.DisplayNameFor(model => model.Quizes.First().QuizGenre)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Quizes)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuizName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfQuestions)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorrectQuestions)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PercentageCorrect)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateSolved)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuizGenre)
+            </td>
+            <td>
+                @Html.ActionLink("More", "SolvedQuizDetails", new { quizId = item.Id })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/js/Sorttable.js"></script>

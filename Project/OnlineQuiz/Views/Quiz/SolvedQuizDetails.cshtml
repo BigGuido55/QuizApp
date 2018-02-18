@@ -1,0 +1,63 @@
+﻿@model OnlineQuiz.Core.SolvingQuiz
+
+@{
+    ViewData["Title"] = "SolvedQuizDetails";
+}
+
+<h2 style="font-weight: bold">Quiz details</h2>
+
+<div>
+    <h2>@Model.QuizName</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Number of questions:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfQuestions)
+        </dd>
+        <dt>
+            Correct answers:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CorrectQuestions)
+        </dd>
+        <dt>
+            Percentage correct:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PercentageCorrect)
+        </dd>
+        <dt>
+            Date solved:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateSolved)
+        </dd>
+        <dt>
+            Genre:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.QuizGenre)
+        </dd>
+    </dl>
+</div>
+@foreach(var item in Model.Questions)
+{
+    <h3>@item.QuestionText</h3>
+    <p></p>
+    @if (item.IsCorrect)
+    {
+        <p><text style="background-color: lawngreen">Your answer is correct!</text></p>
+        <p>@item.UserAnswer</p>
+    }
+    else{ 
+        <p><text style="background-color: orangered">Your answer is incorrect!</text></p>
+        <p>Correct answer: @item.CorrectAnswer</p>
+        <p>Your answer: @item.UserAnswer</p>
+    }
+    <p></p>
+}
+<div>
+    <a asp-action="Profile">Back to profile</a>
+</div>
