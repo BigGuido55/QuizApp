@@ -51,6 +51,9 @@ na razmišljanje "kako li je samo naèinjena". Smatram da je aplikacija prilièno u
 i da bi se mogla koristiti kao dobra zabava, ali i provjera znanja (naravno kada bi admin
 redovito objavljivao kvizove).
 
+URL aplikacije:
+http://quizprojectapp.azurewebsites.net/
+
 Podaci za admina:		
 email: tk@fer.hr	lozinka: Tiny-555
 			
